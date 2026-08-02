@@ -8,6 +8,9 @@ import { MOCKED_CASES } from './mocks/cases.mock';
 export class QuestService {
   public cases = signal<CaseInterface[]>(this.getCases());
   public caseIndex = signal<number>(0);
+  public currentChoice = signal<string | null>(null);
+  public correctChoiceTotal = signal<number>(0);
+
   public currentCase = computed(() => this.cases()[this.caseIndex()]);
   public isEndOfCases = computed(
     () => this.caseIndex() === this.cases().length,
@@ -18,6 +21,14 @@ export class QuestService {
     const currentIndex = this.caseIndex();
 
     this.caseIndex.set(this.isEndOfCases() ? currentIndex : currentIndex + 1);
+    this.currentChoice.set(null);
+  }
+
+  public setChoice(choice: string): void {
+    this.currentChoice.set(choice);
+    this.correctChoiceTotal.update((total) =>
+      choice === this.currentCase().choice ? total + 1 : total,
+    );
   }
 
   public goToStart(): void {

@@ -1,4 +1,12 @@
-<div class="choice">
+<div
+  class="choice"
+  [ngClass]="{
+    'choice-success': isAnOption(),
+    'choice-error': isNotAnOption(),
+    'choice-disabled': !!questService.currentChoice(),
+  }"
+  (click)="questService.setChoice(option())"
+>
   <div class="choice-title">{{ OPTION_LABEL[optionIndex()] }}</div>
   <div class="choice-text">{{ option() }}</div>
 </div>

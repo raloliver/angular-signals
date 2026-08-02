@@ -4,7 +4,10 @@
       <div class="success">Congrats!</div>
       <div class="info">
         <p>You done it!</p>
-        <p>You got 7 of {{ questService.cases().length }} cases.</p>
+        <p>
+          You got {{ questService.correctChoiceTotal() }} of
+          {{ questService.cases().length }} cases.
+        </p>
       </div>
       <button class="next" (click)="questService.goToStart()">Restart</button>
     </div>
@@ -16,7 +19,15 @@
         }}
       </div>
       <case />
-      <button class="next" (click)="questService.goToNextCase()">Next</button>
+      @if (questService.currentChoice()) {
+        <button
+          [disabled]=""
+          class="next"
+          (click)="questService.goToNextCase()"
+        >
+          Next
+        </button>
+      }
     </div>
   }
 </div>
