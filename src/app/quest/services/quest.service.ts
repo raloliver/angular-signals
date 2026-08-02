@@ -12,6 +12,10 @@ export class QuestService {
   public isEndOfCases = computed(
     () => this.caseIndex() === this.cases().length,
   );
+  public caseOptions = computed(() => [
+    this.currentCase().choice,
+    ...this.currentCase().options,
+  ]);
 
   public goToNextCase(): void {
     const currentIndex = this.caseIndex();
