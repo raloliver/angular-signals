@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Angular App
         # Replace <repo-name> with your exact GitHub repository name
-        run: npx ng build --configuration production --base-href /<repo-name>/
+        run: npx ng build --configuration production --base-href /angular-signals/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
