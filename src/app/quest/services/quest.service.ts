@@ -12,10 +12,7 @@ export class QuestService {
   public isEndOfCases = computed(
     () => this.caseIndex() === this.cases().length,
   );
-  public caseOptions = computed(() => [
-    this.currentCase().choice,
-    ...this.currentCase().options,
-  ]);
+  public caseOptions = computed(() => this.randomOptions(this.currentCase()));
 
   public goToNextCase(): void {
     const currentIndex = this.caseIndex();
@@ -25,6 +22,15 @@ export class QuestService {
 
   public goToStart(): void {
     this.caseIndex.set(0);
+  }
+
+  private randomOptions(item: CaseInterface): string[] {
+    const options = [item.choice, ...item.options];
+
+    return options
+      .map((option) => ({ order: Math.random(), option }))
+      .sort((a, b) => a.order - b.order)
+      .map(({ option }) => option);
   }
 
   private getCases(): CaseInterface[] {
