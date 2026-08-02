@@ -1,6 +1,8 @@
 <div class="quest">
   <div>
-    <div class="header">Case 1/10</div>
+    <div class="header">
+      Case {{ questService.caseNumber() + 1 }}/{{ questService.cases().length }}
+    </div>
     <case />
     <div class="next">Next</div>
   </div>
