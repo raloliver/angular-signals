@@ -28,7 +28,8 @@
   padding: 14px 75px;
   text-transform: uppercase;
   cursor: pointer;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .results {

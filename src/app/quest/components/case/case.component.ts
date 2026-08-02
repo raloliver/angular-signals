@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChoiceComponent } from '../choice/choice.component';
+import { QuestService } from '../../services/quest.service';
 
 @Component({
   selector: 'case',
@@ -8,4 +9,6 @@ import { ChoiceComponent } from '../choice/choice.component';
   templateUrl: './case.component.html',
   styleUrl: './case.component.css',
 })
-export class CaseComponent {}
+export class CaseComponent {
+  public questService = inject(QuestService);
+}

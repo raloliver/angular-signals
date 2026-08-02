@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CaseComponent } from './components/case/case.component';
-import { ChoiceComponent } from './components/choice/choice.component';
+import { QuestService } from './services/quest.service';
 
 @Component({
   selector: 'quest',
   standalone: true,
-  imports: [CaseComponent, ChoiceComponent],
+  imports: [CaseComponent],
   templateUrl: './quest.component.html',
   styleUrl: './quest.component.css',
 })
-export class QuestComponent {}
+export class QuestComponent {
+  public questService = inject(QuestService);
+}
