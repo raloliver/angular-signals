@@ -7,11 +7,20 @@ import { MOCKED_CASES } from './mocks/cases.mock';
 })
 export class QuestService {
   public cases = signal<CaseInterface[]>(this.getCases());
-  public caseNumber = signal<number>(0);
-  public currentCase = computed(() => this.cases()[this.caseNumber()]);
+  public caseIndex = signal<number>(0);
+  public currentCase = computed(() => this.cases()[this.caseIndex()]);
+  public isEndOfCases = computed(
+    () => this.caseIndex() === this.cases().length,
+  );
 
   public goToNextCase(): void {
-    this.caseNumber.set(this.caseNumber() + 1);
+    const currentIndex = this.caseIndex();
+
+    this.caseIndex.set(this.isEndOfCases() ? currentIndex : currentIndex + 1);
+  }
+
+  public goToStart(): void {
+    this.caseIndex.set(0);
   }
 
   private getCases(): CaseInterface[] {

@@ -1,9 +1,22 @@
 <div class="quest">
-  <div>
-    <div class="header">
-      Case {{ questService.caseNumber() + 1 }}/{{ questService.cases().length }}
+  @if (questService.isEndOfCases()) {
+    <div class="results">
+      <div class="success">Congrats!</div>
+      <div class="info">
+        <p>You done it!</p>
+        <p>You got 7 of {{ questService.cases().length }} cases.</p>
+      </div>
+      <button class="next" (click)="questService.goToStart()">Restart</button>
     </div>
-    <case />
-    <button class="next" (click)="questService.goToNextCase()">Next</button>
-  </div>
+  } @else {
+    <div>
+      <div class="header">
+        Case {{ questService.caseIndex() + 1 }}/{{
+          questService.cases().length
+        }}
+      </div>
+      <case />
+      <button class="next" (click)="questService.goToNextCase()">Next</button>
+    </div>
+  }
 </div>
