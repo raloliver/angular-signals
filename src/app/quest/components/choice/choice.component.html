@@ -8,5 +8,5 @@
   (click)="questService.setChoice(option())"
 >
   <div class="choice-title">{{ OPTION_LABEL[optionIndex()] }}</div>
-  <div class="choice-text">{{ option() }}</div>
+  <div class="choice-text" [innerHTML]="option()"></div>
 </div>
