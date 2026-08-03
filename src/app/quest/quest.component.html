@@ -1,4 +1,13 @@
 <div class="quest">
+  @if (questService.error()) {
+    <div class="results">
+      <div class="success">Ops!</div>
+      <div class="info">
+        <p>{{ questService.error() }}</p>
+        <button class="next" (click)="refresh()">Try again</button>
+      </div>
+    </div>
+  }
   @if (questService.isEndOfCases()) {
     <div class="results">
       <div class="success">Congrats!</div>

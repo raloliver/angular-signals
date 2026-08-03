@@ -1,5 +1,5 @@
 <div>
-  <div class="case">{{ questService.currentCase().case }}</div>
+  <div class="case" [innerHTML]="questService.currentCase().case"></div>
   <div class="choices">
     @for (case of questService.caseOptions(); track $index) {
       <choice [optionIndex]="$index" [option]="case" />
